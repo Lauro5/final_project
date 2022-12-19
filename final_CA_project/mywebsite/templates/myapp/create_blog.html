@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Create New Blog</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <button type="submit" class="btn btn-primary mt-4">Post Blog</button>
+</form>
+
+<script>
+    var name = "{{ user.id }}"
+    document.getElementById("author").value = name;
+</script>
+
+{% endblock content %}

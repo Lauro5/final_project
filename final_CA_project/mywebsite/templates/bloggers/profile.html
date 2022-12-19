@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card border-success mb-3">
+    <div class="card-header bg-transparent border-success fs-4">{{user.username}} Profile Page</div>
+    <div class="card-body">
+        {% if user.username %}
+        <p class="card-text">Username: {{user.username}}</p>
+        {% else %}
+            <div class="alert alert-primary" role="alert">
+                <b>Username</b> is not provided by user.
+          </div>
+        {% endif %}
+
+        {% if user.first_name %}
+        <p class="card-text">First Name: {{user.first_name}}</p>
+        {% else %}
+            <div class="alert alert-primary" role="alert">
+                <b>First Name</b> is not provided by user.
+          </div>
+        {% endif %}
+
+        {% if user.last_name %}
+        <p class="card-text">Last Name: {{user.last_name}}</p>
+        {% else %}
+            <div class="alert alert-primary" role="alert">
+                <b>Last Name</b> is not provided by user.
+          </div>
+        {% endif %}
+
+        {% if user.email %}
+        <p class="card-text">Email: {{user.email}}</p>
+        {% else %}
+        <div class="alert alert-primary" role="alert">
+            <b>Email</b> is not provided by user.
+      </div>
+    {% endif %}
+    </div>
+    <div class="card-footer bg-transparent border-success">
+        <a class="btn btn-sm btn-secondary" href="{% url 'change-password' %}">Change Password</a>
+        <a class="btn btn-sm btn-dark" href="{% url 'edit_user' %}">Edit Profile</a>
+        <a class="btn btn-sm btn-danger" href="{% url 'delete_user' user.id %}">Delete Account</a>
+    </div>
+ </div>
+
+ <hr>
+
+ <h4>{{user.username}} Blog Posts</h4>
+
+ {% for post_data in user_related_data %}
+    <h6>{{post_data.name}} | {{post_data.post_date}}</h6>
+ {% endfor %}
+
+{% endblock %}
