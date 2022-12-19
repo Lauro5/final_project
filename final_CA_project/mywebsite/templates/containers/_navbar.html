@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'home' %}">Blog World</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+              <a 
+              {% if request.path == "/" %}
+                    class="nav-link active" 
+                {% else %}
+                    class="nav-link"
+              {% endif %}
+              aria-current="page" href="{% url 'home' %}">Home</a>
+          </li>
+
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a 
+            {% if request.path == "/create_new_blog/" %}
+                  class="nav-link active" 
+              {% else %}
+                  class="nav-link"
+            {% endif %}
+            aria-current="page" href="{% url 'create_blog' %}">Create Blog</a>
+        </li>
+        {% endif %}
+
+          <li class="nav-item">
+              <a 
+              {% if request.path == "/contact_us/" %}
+                    class="nav-link active" 
+                {% else %}
+                    class="nav-link"
+              {% endif %}
+              href="{%url 'contact_us' %}">Contact Us</a>
+          </li>
+        </ul>
+    </div>
+    <ul class="navbar-nav mb-2 mb-lg-0">
+        {% if user.is_authenticated %}
+        <li class="nav-item ">
+            <a class="nav-link active" aria-current="page" href="{% url 'profile' user.username %}">{{user.username}}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{% url 'logout' %}">Logout</a>
+        </li>
+
+        {% else %}
+        <li class="nav-item">
+            <a 
+            {% if request.path == "/bloggers/login/" %}
+                class="nav-link active" 
+            {% else %}
+                class="nav-link"
+            {% endif %}
+            aria-current="page" href="{% url 'login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+            <a 
+            {% if request.path == "/bloggers/create-new-account/" %}
+                class="nav-link active" 
+            {% else %}
+                class="nav-link"
+            {% endif %}
+            aria-current="page" href="{% url 'register' %}">Signup</a>
+        </li>
+        {% endif %}
+    </ul>
+    </div>
+</div>
+</nav>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<dev class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>{{ blog.name }}</h2>
+            <span>Author: {{ blog.author }}</span>
+            <div>
+                <small>{{ blog.post_date }}</small>
+            </div>
+
+            <div>
+                <p>{{ blog.description|safe }}</p>
+            </div>
+
+
+{% endblock content %}

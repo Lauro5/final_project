@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>Update {{user.username}} Profile</h3>
+<form method="post">
+    {% csrf_token %}
+    {{form}}
+    
+    <br>
+    <button class="btn btn-sm btn-info" type="submit">Update user</button>
+</form>
+{% endblock content %}
